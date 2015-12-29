@@ -12,7 +12,7 @@ FROM openhs/ubuntu-nvidia
 
 
 MAINTAINER openhs
-LABEL version = "0.2.0" \
+LABEL version = "0.2.1" \
       description = "Firefox with Flash and nVidia graphics driver."
 
 
@@ -24,7 +24,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     ca-certificates
 
 # IDs of Firefox addons which shall be installed (NoScript Security Suite, CS Lite Mod, Disconnect, Proxy Switcher)
-ARG addons="722 327795 464050 654096"
+# Docker Hub does not grok ARG
+#ARG addons="722 327795 464050 654096"
+ENV addons="722 327795 464050 654096"
 
 RUN useradd --shell /bin/false --create-home firefox && \
 
