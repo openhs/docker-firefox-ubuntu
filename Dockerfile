@@ -3,7 +3,7 @@
 # Project: docker-firefox-ubuntu
 # License: GNU GPLv3
 #
-# Copyright (C) 2015 Robert Cernansky
+# Copyright (C) 2015 - 2016 Robert Cernansky
 
 
 
@@ -12,7 +12,7 @@ FROM openhs/ubuntu-nvidia
 
 
 MAINTAINER openhs
-LABEL version = "0.2.1" \
+LABEL version = "0.3.0" \
       description = "Firefox with Flash and nVidia graphics driver."
 
 
@@ -28,10 +28,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
 #ARG addons="722 327795 464050 654096"
 ENV addons="722 327795 464050 654096"
 
-RUN useradd --shell /bin/false --create-home firefox && \
-
-    profile=docker.default && \
-    addonsDir=/home/firefox/.mozilla/firefox/${profile}/extensions && \
+RUN profile=docker.default && \
+    addonsDir=/home/appuser/.mozilla/firefox/${profile}/extensions && \
 
     mkdir -p ${addonsDir} && \
 
@@ -43,7 +41,7 @@ RUN useradd --shell /bin/false --create-home firefox && \
        Name=default\n\
        IsRelative=1\n\
        Path=${profile}\n\
-       Default=1" >> /home/firefox/.mozilla/firefox/profiles.ini && \
+       Default=1" >> /home/appuser/.mozilla/firefox/profiles.ini && \
    
     getAddon() { \
       wget https://addons.mozilla.org/firefox/downloads/latest/${1}/addon-${1}-latest.xpi; \
@@ -57,9 +55,9 @@ RUN useradd --shell /bin/false --create-home firefox && \
       getAddon ${addonNum} && \
       mv addon-${addonNum}-latest.xpi ${addonsDir}/$(addonId addon-${addonNum}-latest.xpi).xpi; \
     done && \
-    chown -R firefox:firefox /home/firefox/.mozilla
+    chown -R appuser:appuser /home/appuser/.mozilla
 
-COPY container_startup.sh /opt/container_startup.sh
+COPY container_startup.sh /opt/
 RUN chmod +x /opt/container_startup.sh
 
 ENTRYPOINT ["/opt/container_startup.sh"]
