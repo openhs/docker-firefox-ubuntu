@@ -19,5 +19,5 @@ For accelerated graphics start the container with following additional parameter
 --device /dev/nvidiactl --device /dev/nvidia0`.  Replace `352` in `NVIDIA_DRIVER_VERSION` with the same nVidia driver
 version as on the host.
 
-Following plugins are pre-installed: NoScript Security Suite, CS Lite Mod, Disconnect, Proxy Switcher.  They have
+Following plugins are pre-installed: NoScript Security Suite, CookieShield, Disconnect, Proxy Switcher.  They have
 to be enabled in the standard Add-ons management page in Firefox.

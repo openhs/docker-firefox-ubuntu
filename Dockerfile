@@ -3,7 +3,7 @@
 # Project: docker-firefox-ubuntu
 # License: GNU GPLv3
 #
-# Copyright (C) 2015 - 2016 Robert Cernansky
+# Copyright (C) 2015 - 2017 Robert Cernansky
 
 
 
@@ -12,7 +12,7 @@ FROM openhs/ubuntu-nvidia
 
 
 MAINTAINER openhs
-LABEL version = "0.3.0" \
+LABEL version = "0.4.0" \
       description = "Firefox with Flash and nVidia graphics driver."
 
 
@@ -23,10 +23,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     unzip \
     ca-certificates
 
-# IDs of Firefox addons which shall be installed (NoScript Security Suite, CS Lite Mod, Disconnect, Proxy Switcher)
-# Docker Hub does not grok ARG
-#ARG addons="722 327795 464050 654096"
-ENV addons="722 327795 464050 654096"
+# Firefox addons which shall be installed (NoScript Security Suite, CookieShield, Disconnect, Proxy Switcher); the
+# format is '<addon_number:addon_id> [...]' where 'addon_number' identifies addon for downloading and 'addon_id' is
+# identifier for installation
+ARG addons="722:{73a6fe31-595d-460b-a920-fcc0f8843232} 676288:cookie-shield@wantora.github.io 464050:2.0@disconnect.me 654096:jid0-hjBdm7jJii7llLkqacvGnd3gHge@jetpack"
 
 RUN profile=docker.default && \
     addonsDir=/home/appuser/.mozilla/firefox/${profile}/extensions && \
@@ -43,17 +43,23 @@ RUN profile=docker.default && \
        Path=${profile}\n\
        Default=1" >> /home/appuser/.mozilla/firefox/profiles.ini && \
    
-    getAddon() { \
-      wget https://addons.mozilla.org/firefox/downloads/latest/${1}/addon-${1}-latest.xpi; \
+    downloadAddon() { \
+      wget https://addons.mozilla.org/firefox/downloads/latest/${1}/addon-${1}-latest.xpi || \
+      wget https://addons.mozilla.org/firefox/downloads/latest/${1}/platform:2/addon-${1}-latest.xpi; \
+    } && \
+
+    addonNum() { \
+      echo ${1%:*}; \
     } && \
 
     addonId() { \
-      unzip -p ${1} install.rdf | grep -m 1 -e em:id | sed 's/<\/\?em:id>//g' | tr -d '[:blank:]'; \
+      echo ${1#*:}; \
     } && \
 
-    for addonNum in $addons; do \
-      getAddon ${addonNum} && \
-      mv addon-${addonNum}-latest.xpi ${addonsDir}/$(addonId addon-${addonNum}-latest.xpi).xpi; \
+    for addon in ${addons}; do \
+      addonNum=$(addonNum ${addon}) && \
+      downloadAddon ${addonNum} && \
+      mv addon-${addonNum}-latest.xpi ${addonsDir}/$(addonId ${addon}).xpi; \
     done && \
     chown -R appuser:appuser /home/appuser/.mozilla
 
