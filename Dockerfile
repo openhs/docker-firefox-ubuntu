@@ -12,7 +12,7 @@ FROM openhs/ubuntu-nvidia
 
 
 MAINTAINER openhs
-LABEL version = "0.5.0" \
+LABEL version = "0.5.1" \
       description = "Firefox with Flash and nVidia graphics driver."
 
 
@@ -62,6 +62,12 @@ RUN profile=docker.default && \
       downloadAddon ${addonNum} && \
       mv addon-${addonNum}-latest.xpi ${addonsDir}/$(addonId ${addon}).xpi; \
     done && \
+    \
+    # apply configuration
+    # >disable multi-process windows to avoid crashes
+    echo "user_pref(\"browser.tabs.remote.autostart\", false);" > \
+         /home/appuser/.mozilla/firefox/${profile}/user.js && \
+    \
     chown -R appuser:appuser /home/appuser/.mozilla
 
 COPY container_startup.sh /opt/
