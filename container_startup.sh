@@ -7,7 +7,7 @@
 # Project: docker-firefox-ubuntu
 # License: GNU GPLv3
 #
-# Copyright (C) 2015 - 2016 Robert Cernansky
+# Copyright (C) 2015 - 2019 Robert Cernansky
 
 
 
@@ -27,4 +27,4 @@ EOF
   exit 0
 fi
 
-/opt/docker-ubuntu-nvidia_startup.sh /usr/bin/firefox --no-remote "${@}"
+/opt/docker-ubuntu-nvidia_startup.sh /usr/bin/firefox --no-remote -P default "${@}"

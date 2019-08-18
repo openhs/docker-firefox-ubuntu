@@ -3,7 +3,7 @@
 # Project: docker-firefox-ubuntu
 # License: GNU GPLv3
 #
-# Copyright (C) 2015 - 2018 Robert Cernansky
+# Copyright (C) 2015 - 2019 Robert Cernansky
 
 
 
@@ -12,7 +12,7 @@ FROM openhs/ubuntu-nvidia
 
 
 MAINTAINER openhs
-LABEL version = "0.5.1" \
+LABEL version = "0.5.2" \
       description = "Firefox with Flash and nVidia graphics driver."
 
 
