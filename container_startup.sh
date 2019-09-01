@@ -14,10 +14,7 @@
 if [ "-h" == "${1}" ] || [ "--help" == "${1}" ]; then
     cat <<EOF
 Usage:
-  docker -e DISPLAY=\${DISPLAY} [-e NVIDIA_DRIVER_VERSION=<host_driver_version>] [--device /dev/<gpu_device> [...]] [--device /dev/<sound_device> [...]] -v /tmp/.X11-unix:/tmp/.X11-unix -v \${XAUTHORITY}:${HOST_XAUTHORITY}:ro openhs/firefox-ubuntu [param [...]]
-
-  Devices for nVidia GPU with proprietary driver:
-    /dev/nvidiactl, /dev/nvidia0
+  docker run -e DISPLAY=\${DISPLAY} [--device /dev/<sound_device> [...]] -v /tmp/.X11-unix:/tmp/.X11-unix -v \${XAUTHORITY}:${HOST_XAUTHORITY}:ro openhs/firefox-ubuntu [param [...]]
 
   Devices for an Alsa sound card:
     /dev/snd
@@ -27,4 +24,4 @@ EOF
   exit 0
 fi
 
-/opt/docker-ubuntu-nvidia_startup.sh /usr/bin/firefox --no-remote -P default "${@}"
+/opt/docker-ubuntu-x_startup.sh /usr/bin/firefox --no-remote -P default "${@}"

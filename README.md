@@ -1,6 +1,6 @@
 # docker-firefox-ubuntu
 
-Firefox with Flash and nVidia graphics driver.
+Firefox with Flash and some privacy addons.
 
 
 
@@ -15,9 +15,5 @@ and run it again, after it was closed:
 
     $ docker start firefox
 
-For accelerated graphics start the container with following additional parameters: `-e NVIDIA_DRIVER_VERSION=352
---device /dev/nvidiactl --device /dev/nvidia0`.  Replace `352` in `NVIDIA_DRIVER_VERSION` with the same nVidia driver
-version as on the host.
-
 Following plugins are pre-installed: NoScript Security Suite, Cookie AutoDelete, Disconnect, Proxy Switcher and
-Manager.  They have to be enabled in the standard Add-ons management page in Firefox.
+Manager.  They have to be enabled manually in the standard Add-ons management page in Firefox.

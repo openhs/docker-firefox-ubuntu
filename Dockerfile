@@ -7,13 +7,13 @@
 
 
 
-FROM openhs/ubuntu-nvidia
+FROM openhs/ubuntu-x
 
 
 
 MAINTAINER openhs
-LABEL version = "0.5.2" \
-      description = "Firefox with Flash and nVidia graphics driver."
+LABEL version = "0.6.0" \
+      description = "Firefox with Flash and some privacy addons."
 
 
 
