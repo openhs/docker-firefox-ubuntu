@@ -63,10 +63,8 @@ RUN profile=docker.default && \
       mv addon-${addonNum}-latest.xpi ${addonsDir}/$(addonId ${addon}).xpi; \
     done && \
     \
-    # apply configuration
-    # >disable multi-process windows to avoid crashes
-    echo "user_pref(\"browser.tabs.remote.autostart\", false);" > \
-         /home/appuser/.mozilla/firefox/${profile}/user.js && \
+    # disable multi-process windows in firefox to avoid crashes
+    echo "export MOZ_FORCE_DISABLE_E10S=1" >> /home/appuser/.profile && \
     \
     chown -R appuser:appuser /home/appuser/.mozilla
 
