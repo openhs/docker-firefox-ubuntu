@@ -8,8 +8,10 @@ Firefox with Flash and some privacy addons.
 
 Start firefox like this:
 
-    $ docker run --name firefox -e DISPLAY=$DISPLAY --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix \
-      -v $XAUTHORITY:/tmp/.host_Xauthority:ro -dti openhs/firefox-ubuntu
+    $ docker run --name firefox -e DISPLAY=$DISPLAY --device /dev/snd/controlC0 \
+      --device /dev/snd/pcmC0D0p --device /dev/snd/timer \
+      -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:/tmp/.host_Xauthority:ro \
+      -dti openhs/firefox-ubuntu
 
 and run it again, after it was closed:
 

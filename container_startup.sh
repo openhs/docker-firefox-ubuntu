@@ -19,9 +19,9 @@ Usage:
   Devices for an Alsa sound card:
     /dev/snd
   or (required minimum for sound card 0)
-    /dev/snd/controlC0, /dev/snd/pcmC0D0p
+    /dev/snd/controlC0, /dev/snd/pcmC0D0p, /dev/snd/timer
 EOF
   exit 0
 fi
 
-/opt/docker-ubuntu-x_startup.sh /usr/bin/firefox --no-remote -P default "${@}"
+/opt/docker-ubuntu-x_startup.sh apulse /usr/bin/firefox --no-remote -P default "${@}"
