@@ -12,7 +12,7 @@ FROM openhs/ubuntu-x
 
 
 MAINTAINER openhs
-LABEL version = "0.6.1" \
+LABEL version = "0.7.0" \
       description = "Firefox with Flash and some privacy addons."
 
 
@@ -24,10 +24,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     unzip \
     ca-certificates
 
-# Firefox addons which shall be installed (NoScript Security Suite, Cookie AutoDelete, Disconnect, Proxy Switcher and Manager); the
-# format is '<addon_number:addon_id> [...]' where 'addon_number' identifies addon for downloading and 'addon_id' is
-# identifier for installation
-ARG addons="722:{73a6fe31-595d-460b-a920-fcc0f8843232} 860751:CookieAutoDelete@kennydo.com 464050:2.0@disconnect.me 840875:{e4a12b8a-ab12-449a-b70e-4f54ccaf235e}"
+# Firefox addons which shall be installed (NoScript Security Suite, Cookie AutoDelete, Disconnect, Foxy Proxy
+# Standard); the format is '<addon_number:addon_id> [...]' where 'addon_number' identifies addon for downloading and
+# 'addon_id' is identifier for installation
+ARG addons="722:{73a6fe31-595d-460b-a920-fcc0f8843232} 860751:CookieAutoDelete@kennydo.com 464050:2.0@disconnect.me 3466053:foxyproxy@eric.h.jung"
 
 RUN profile=docker.default && \
     addonsDir=/home/appuser/.mozilla/firefox/${profile}/extensions && \
