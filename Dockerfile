@@ -64,10 +64,10 @@ RUN profile=docker.default && \
       mv addon-${addonNum}-latest.xpi ${addonsDir}/$(addonId ${addon}).xpi; \
     done && \
     \
-    # disable multi-process windows in firefox to avoid crashes
-    echo "export MOZ_FORCE_DISABLE_E10S=1" >> /home/appuser/.profile && \
-    \
     chown -R appuser:appuser /home/appuser/.mozilla
+
+# disable multi-process windows in firefox to avoid crashes
+ENV MOZ_FORCE_DISABLE_E10S=1
 
 COPY container_startup.sh /opt/
 RUN chmod +x /opt/container_startup.sh
