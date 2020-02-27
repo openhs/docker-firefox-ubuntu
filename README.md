@@ -18,4 +18,4 @@ and run it again, after it was closed:
     $ docker start firefox
 
 Following plugins are pre-installed: NoScript Security Suite, Cookie AutoDelete, Disconnect, Foxy Proxy
-# Standard.  They have to be enabled manually in the standard Add-ons management page in Firefox.
+ Standard.  They have to be enabled manually in the standard Add-ons management page in Firefox.
