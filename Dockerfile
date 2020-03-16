@@ -3,7 +3,7 @@
 # Project: docker-firefox-ubuntu
 # License: GNU GPLv3
 #
-# Copyright (C) 2015 - 2019 Robert Cernansky
+# Copyright (C) 2015 - 2020 Robert Cernansky
 
 
 
@@ -12,7 +12,7 @@ FROM openhs/ubuntu-x
 
 
 MAINTAINER openhs
-LABEL version = "0.7.0" \
+LABEL version = "0.7.1" \
       description = "Firefox with Flash and some privacy addons."
 
 
@@ -59,8 +59,8 @@ RUN profile=docker.default && \
     } && \
     \
     for addon in ${addons}; do \
-      addonNum=$(addonNum ${addon}) && \
-      downloadAddon ${addonNum} && \
+      addonNum=$(addonNum ${addon}); \
+      downloadAddon ${addonNum} || exit 1; \
       mv addon-${addonNum}-latest.xpi ${addonsDir}/$(addonId ${addon}).xpi; \
     done && \
     \
