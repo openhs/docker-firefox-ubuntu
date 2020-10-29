@@ -12,7 +12,7 @@ FROM openhs/ubuntu-x
 
 
 MAINTAINER openhs
-LABEL version = "0.7.1" \
+LABEL version = "0.7.2" \
       description = "Firefox with Flash and some privacy addons."
 
 
@@ -65,9 +65,6 @@ RUN profile=docker.default && \
     done && \
     \
     chown -R appuser:appuser /home/appuser/.mozilla
-
-# disable multi-process windows in firefox to avoid crashes
-ENV MOZ_FORCE_DISABLE_E10S=1
 
 COPY container_startup.sh /opt/
 RUN chmod +x /opt/container_startup.sh
