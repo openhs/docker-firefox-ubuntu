@@ -12,7 +12,7 @@ FROM openhs/ubuntu-x
 
 
 MAINTAINER openhs
-LABEL version = "0.8.0" \
+LABEL version = "0.8.1" \
       description = "Firefox with some privacy addons."
 
 
@@ -21,6 +21,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     firefox \
     apulse \
     unzip \
+    wget \
     ca-certificates
 
 # Firefox addons which shall be installed (NoScript Security Suite, Cookie AutoDelete, Disconnect, Foxy Proxy
