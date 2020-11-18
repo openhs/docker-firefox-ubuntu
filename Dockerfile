@@ -12,14 +12,13 @@ FROM openhs/ubuntu-x
 
 
 MAINTAINER openhs
-LABEL version = "0.7.2" \
-      description = "Firefox with Flash and some privacy addons."
+LABEL version = "0.8.0" \
+      description = "Firefox with some privacy addons."
 
 
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     firefox \
-    flashplugin-installer \
     apulse \
     unzip \
     ca-certificates

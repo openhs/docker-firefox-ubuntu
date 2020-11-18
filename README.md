@@ -1,6 +1,6 @@
 # docker-firefox-ubuntu
 
-Firefox with Flash and some privacy addons.
+Firefox with some privacy addons.
 
 
 
