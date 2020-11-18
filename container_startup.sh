@@ -14,7 +14,7 @@
 if [ "-h" == "${1}" ] || [ "--help" == "${1}" ]; then
     cat <<EOF
 Usage:
-  docker run --shm-size=256m -e DISPLAY=\${DISPLAY} [--device /dev/<sound_device> [...]] -v /tmp/.X11-unix:/tmp/.X11-unix -v \${XAUTHORITY}:${HOST_XAUTHORITY}:ro openhs/firefox-ubuntu [param [...]]
+  docker run --shm-size=384m -e DISPLAY=\${DISPLAY} [--device /dev/<sound_device> [...]] -v /tmp/.X11-unix:/tmp/.X11-unix -v \${XAUTHORITY}:${HOST_XAUTHORITY}:ro openhs/firefox-ubuntu [param [...]]
 
   Devices for an Alsa sound card:
     /dev/snd
