@@ -41,7 +41,7 @@ RUN cd /tmp && \
 # Firefox addons which shall be installed (NoScript Security Suite, Cookie AutoDelete, Disconnect, Foxy Proxy
 # Standard); the format is '<addon_number:addon_id> [...]' where 'addon_number' identifies addon for downloading and
 # 'addon_id' is identifier for installation
-ARG addons="722:{73a6fe31-595d-460b-a920-fcc0f8843232} 3514619:CookieAutoDelete@kennydo.com 464050:2.0@disconnect.me 3466053:foxyproxy@eric.h.jung"
+ARG addons="722:{73a6fe31-595d-460b-a920-fcc0f8843232} 3971429:CookieAutoDelete@kennydo.com 464050:2.0@disconnect.me 3466053:foxyproxy@eric.h.jung"
 
 RUN profile=docker.default && \
     addonsDir=/home/appuser/.mozilla/firefox/${profile}/extensions && \
