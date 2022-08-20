@@ -59,9 +59,10 @@ RUN profile=docker.default && \
        Default=1" >> /home/appuser/.mozilla/firefox/profiles.ini && \
     \
     downloadAddon() { \
-      wget https://addons.mozilla.org/firefox/downloads/file/${1}/addon-${1}-latest.xpi || \
-      wget https://addons.mozilla.org/firefox/downloads/latest/${1}/addon-${1}-latest.xpi || \
-      wget https://addons.mozilla.org/firefox/downloads/latest/${1}/platform:2/addon-${1}-latest.xpi; \
+      wget --progress=dot:mega https://addons.mozilla.org/firefox/downloads/file/${1}/addon-${1}-latest.xpi || \
+      wget --progress=dot:mega https://addons.mozilla.org/firefox/downloads/latest/${1}/addon-${1}-latest.xpi || \
+      wget --progress=dot:mega \
+           https://addons.mozilla.org/firefox/downloads/latest/${1}/platform:2/addon-${1}-latest.xpi; \
     } && \
     \
     addonNum() { \
