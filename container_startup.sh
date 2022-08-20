@@ -7,7 +7,7 @@
 # Project: docker-firefox-ubuntu
 # License: GNU GPLv3
 #
-# Copyright (C) 2015 - 2020 Robert Cernansky
+# Copyright (C) 2015 - 2022 Robert Cernansky
 
 
 
@@ -24,4 +24,4 @@ EOF
   exit 0
 fi
 
-/opt/docker-ubuntu-x_startup.sh apulse /usr/bin/firefox --no-remote -P default "${@}"
+/opt/docker-ubuntu-x_startup.sh apulse /usr/local/bin/firefox/firefox --no-remote -P default "${@}"

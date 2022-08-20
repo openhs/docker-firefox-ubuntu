@@ -3,7 +3,7 @@
 # Project: docker-firefox-ubuntu
 # License: GNU GPLv3
 #
-# Copyright (C) 2015 - 2020 Robert Cernansky
+# Copyright (C) 2015 - 2022 Robert Cernansky
 
 
 
@@ -12,17 +12,31 @@ FROM openhs/ubuntu-x
 
 
 MAINTAINER openhs
-LABEL version = "0.8.1" \
+LABEL version = "0.9.0" \
       description = "Firefox with some privacy addons."
 
 
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    firefox \
     apulse \
     unzip \
+    bzip2 \
     wget \
-    ca-certificates
+    ca-certificates \
+    libgtk-3-0 \
+    libdbus-glib-1-2 \
+    libx11-xcb1 \
+    libxtst6 && \
+    \
+    rm -rf /var/lib/apt/lists/*
+
+ENV FF_INSTALLER_NAME=firefox-latest.tar.bz2
+RUN cd /tmp && \
+    wget --progress=dot:mega -O ${FF_INSTALLER_NAME} \
+         'https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US' && \
+    tar -x -C /usr/local/bin -f ${FF_INSTALLER_NAME} && \
+    chown -R appuser:appuser /usr/local/bin/firefox && \
+    rm -f ${FF_INSTALLER_NAME}
 
 # Firefox addons which shall be installed (NoScript Security Suite, Cookie AutoDelete, Disconnect, Foxy Proxy
 # Standard); the format is '<addon_number:addon_id> [...]' where 'addon_number' identifies addon for downloading and
